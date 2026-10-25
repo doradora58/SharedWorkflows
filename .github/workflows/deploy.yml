@@ -34,7 +34,8 @@ jobs:
           REGISTRY="${{ secrets.registry-host }}"
           
           # 1. ローカル名でビルド
-          docker build -t ${SERVICE}:latest \
+          docker build --build-arg APP_VERSION=${VERSION} \
+                       -t ${SERVICE}:latest \
                        -t ${SERVICE}:${VERSION} .
           
           # 2. レジストリ用タグを付与
